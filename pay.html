@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>付费</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="pay-top tc">
+      <p>211人已经付费开通</p>
+    </div>
+    <div class="pay-con">
+      <div class="pay-form clearfix">
+        <label class="pay-label fl">￥</label>
+        <input class="pay-input fl" readonly id='paycount' value="2"/>
+      </div>
+      <ul class="pay-countlist js-paylist">
+        <li class="cur"><a><span class="count">2</span>元</a></li>
+      </ul>
+    </div>
+    <div class="pay-tip">
+      <p class="pay-tiphead tc">付费后您将获得</p>
+      <ul class="pay-tiplist clearfix">
+        <li>
+          <img src="img/pay1.png" alt="" />
+          <p>查看评论</p>
+        </li>
+        <li>
+          <img src="img/pay2.png" alt="" />
+          <p>数据分析</p>
+        </li>
+        <li>
+          <img src="img/pay3.png" alt="" />
+          <p>本站评测</p>
+        </li>
+        <li>
+          <img src="img/pay4.png" alt="" />
+          <p>私人专家服务</p>
+        </li>
+      </ul>
+    </div>
+    <!--btn-->
+    <a href="#" class="m-btn bg-mbtn tc" id="openbtn">确认开通</a>
+  </body>
+  <script src="js/jquery-2.0.0.min.js"></script>
+  <script src="js/main.js"></script>
+  <script type="text/javascript">
+    $(function() {    
+      $('#openbtn').on('click',function(){
+        var paycount=$('#paycount').val();
+        if(paycount){
+          /*ajax操作和付款操作*/
+        }else{
+          alert('请选择默认金额或输入其他金额')
+        }
+      });
+    })
+  </script>
+
+</html>

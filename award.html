@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>奖励支付</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="award-con">
+      <div class="pay-form clearfix">
+        <label class="pay-label fl">￥</label>
+        <input class="pay-input fl" placeholder="或者输入其他金额" id="awardCount" />
+      </div>
+      <ul class="pay-countlist pay-award js-awardlist">
+        <li><a><span class="count">1</span>元</a></li>
+        <li><a><span class="count">2</span>元</a></li>
+        <li><a><span class="count">5</span>元</a></li>
+      </ul>
+    </div>
+    <div class="pay-tip">
+      <p class="pay-tiphead tc" style="margin-bottom:0.5rem">请选择赞助金额</p>
+      <!--建议-->
+      <div class="sug-con">
+        <p class="sug-head">您的宝贵建议</p>
+        <div class="relative">
+          <p class="text-tip tc">请在此处发表您对本公众号的建议吧...</p>
+          <textarea class="sug-text" id="sugText"></textarea>
+        </div>
+      </div>
+      <!--建议-->
+    </div>
+    <!--btn-->
+    <a href="#" class="bg-mbtn m-fixbtn tc" id="awardbtn">确认</a>
+  </body>
+  <script src="js/jquery-2.0.0.min.js"></script>
+  <script src="js/main.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      paycount('.js-awardlist', "#awardCount", '.count');
+      $('#sugText').on('focus', function() {
+        $(this).siblings('.text-tip').hide();
+      });
+      $('#awardbtn').on('click', function() {
+        var awardcount = $('#awardCount').val();
+        /*建议文本可以为空*/
+        if (awardcount) {
+          /*ajax操作*/
+        } else {
+          alert('请选择默认金额或输入其他金额')
+        }
+      });
+    })
+  </script>
+
+</html>

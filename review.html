@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>查看评论</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+
+  <body>
+    <!--头部-->
+    <div class="change-tab">
+      <ul class="change-ul tc clearfix js-changetab">
+        <!--后台定义type查询值-->
+        <li class="cur" data-type='1'>
+          <div class="change-head">
+            <a href="#">
+              <p>查看</p>
+              <p>全部评论</p>
+            </a>
+            <p class="change-line"></p>
+        </li>
+        <li data-type='area'>
+          <a href="#">
+            <p>36%</p>
+            <p>噪音</p>
+          </a>
+          <p class="change-line"></p>
+        </li>
+        <li>
+          <a href="#">
+            <p>22%</p>
+            <p>交通</p>
+          </a>
+          <p class="change-line"></p>
+        </li>
+        <li>
+          <a href="#">
+            <p>12%</p>
+            <p>升值</p>
+          </a>
+          <p class="change-line"></p>
+        </li>
+      </ul>
+      </div>
+      <!--头部-->
+      <!--tip-->
+      <div class="house-mdiv mt2r">
+        <p class="house-mtitle">本站测评</p>
+        <div class="review-tip">
+          <div class="tip-con js-tipcon">
+            <p>万科九龙山楼盘,噪。万科九龙山楼盘,噪。万科九龙山楼盘,噪。万科九龙山楼盘,噪。万科九龙山楼盘,噪。万科九龙山楼盘,噪。万科九龙山楼盘,噪。万科九龙山楼盘,噪。万科九龙山楼盘,噪。万科九龙山楼盘,噪。
+            </p>
+          </div>
+          <a class="tip-switch js-swicth">展开</a>
+        </div>
+      </div>
+      <!--tip-->
+      <!--list-->
+      <div class="house-mdiv mt2r">
+        <p class="house-mtitle clearfix">全部评论<em class="head-tip">(<span>188</span>)</em><a class="head-more fr" href="award.html"><i class="icon icon-award"></i>奖励本站</a></p>
+        <!--sroll-->
+        <div class="sroller-div" id="srollerdiv">
+          <div class="scroller">
+            <ul class="review-list" id="review-list">
+              <!-- <li class="clearfix">
+                <div class="review-time fl">2015-10-21</div>
+                <div class="review-txt fl">
+                  <i class="triangle-l"></i> 房子不错，物业非常高端，希望住。
+                </div>
+              </li>
+              <li class="clearfix">
+                <div class="review-time fl">2015-10-21</div>
+                <div class="review-txt fl">
+                  <i class="triangle-l"></i>我家是大户型，通风非常好，就是小区有就是 哈哈哈哈哈哈开心啦啦啦
+                </div>
+              </li>
+              <li class="clearfix">
+                <div class="review-time fl">2015-10-21</div>
+                <div class="review-txt fl">
+                  <i class="triangle-l"></i> 房子不错，物业非常高端，希望住.
+                </div>
+              </li>
+              <li class="clearfix">
+                <div class="review-time fl">2015-10-21</div>
+                <div class="review-txt fl">
+                  <i class="triangle-l"></i> 房子不错，物业非常高端，希望住.
+                </div>
+              </li>
+              <li class="clearfix">
+                <div class="review-time fl">2015-10-21</div>
+                <div class="review-txt fl">
+                  <i class="triangle-l"></i> 房子不错，物业非常高端，希望住.
+                </div>
+              </li>-->
+            </ul>
+            <div id="pullUp">
+              <span class="pullUpIcon"></span><span class="pullUpLabel">加载更多</span>
+            </div>
+          </div>
+        </div>
+        <!--sroll-->
+      </div>
+      <!--list-->
+      <div id="btop"></div>
+      <a href="#" class="bg-mbtn m-fixbtn tc" id="freebtn">免费体验置业专家服务</a>
+
+  </body>
+  <script src="js/jquery-2.0.0.min.js"></script>
+  <script src="js/iscroll.min.js"></script>
+  <script src="js/main.js"></script>
+  <script type="text/javascript">
+    var datas = {
+        "status": "ok",
+        "list": [{
+          "txt": " 房子不错，物业非常高端，希望住 ",
+          "time": "2015-01-01"
+        }, {
+          "txt": "我家是大户型，通风非常好，就是小区有就是 哈哈哈哈哈哈开心啦啦啦 ",
+          "time": "2015-01-02"
+        }, {
+          "txt": " 房子不错，物业非常高端，希望住 ",
+          "time": "2015-01-03"
+        }, {
+          "txt": " 我家是大户型，通风非常好，就是小区有就是 哈哈哈哈哈哈开心啦啦啦 ",
+          "time": "2015-01-04"
+        }, {
+          "txt": " 房子不错，物业非常高端，希望住 ",
+          "time": "2015-01-05"
+        }, {
+          "txt": " 房子不错，物业非常高端，希望住 ",
+          "time": "2015-01-06"
+        }]
+      }
+      /*后台需要按需更新属性名*/
+
+    function getList(obj) {
+        var htmls = '<li class="clearfix"><div class="review-time fl">' + obj.time + '</div><div class="review-txt fl"><i class="triangle-l"></i> ' + obj.txt + '</div></li>';
+        return htmls;
+      }
+      /*参数初始化*/
+      // 初始化页面参数,后台需要按需更新,就是ajax里面需传给后台的类型等等参数
+    var pageParam = {
+      pageNum: 1,
+      type: ''
+    };
+    $(function() {
+      var btop = $('#freebtn').height() + $('#btop').height();
+      setTimeout(loaded({
+        el: $('#houses-list'),
+        done: pageRender
+      }, btop), 200);
+
+      function pageRender() {
+        loadData({
+          container: '#review-list',
+          url: 'getHouseList',
+          params: pageParam
+        });
+      }
+      pageRender();
+      $('.js-changetab').on('click', 'li', function() {
+        if ($(this).hasClass('cur')) {
+          $(this).removeClass('cur');
+        } else {
+          $(this).addClass('cur').siblings().removeClass('cur');
+        }
+        //根据选择tab传值给后台匹配填充下方评论列表
+        pageParam = {
+          pageNum: 1,
+          type: $(this).data('type')
+        };
+        $('#review-list').empty();
+        myScroll.refresh();
+        pageRender();
+      });
+      /*底部体验按钮*/
+      function savePhoneNumber(callback) {
+        var phone = $('#myphone').val();
+        var phoneformat = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(88[0-9]{1}))+\d{8})$/;
+        if (!phoneformat.test(phone)) {
+          $('.js-frmtip').html("请输入正确的手机号码").css('color', '#fe0101');
+          return false;
+        }
+        $('.js-frmtip').html("专家将尽快与您联系").css('color', '#717071');
+        /*此处ajax提交手机号等*/
+        callback();
+        var resultHtml = '<div class="dialog-head tc">请输入您的联系方式</div><div class="ok-div"><img src="img/frm-ok.png"><p>提交成功</p></div>';
+        var d = dialog({
+          content: resultHtml,
+          onAfterShow: function() {
+            setTimeout(function() {
+              d.remove();
+            }, 1e3);
+          }
+        });
+      }
+      $('#freebtn').click(function() {
+        var htmls = '<div class="dialog-head tc">请输入您的联系方式</div><div class="tc"><div class="phone-frm clearfix"><label class="fl"><i class="icon icon-phone"></i></label><input class="fl" id="myphone" placeholder="输入您的手机号码" type="tel"></div><p class="dialog-tip js-frmtip">专家将尽快与您联系</p></div>'
+        dialog({
+          content: htmls,
+          buttons: [{
+            text: '确认',
+            myClassName: 'okbtn',
+            callback: savePhoneNumber
+          }, {
+            text: '取消',
+            myClassName: 'cancelbtn'
+          }]
+        });
+      });
+      /*展开收起*/
+      window.onload = function() {
+        var tipph = $('.js-tipcon p').height();
+        var tiph = $('.js-tipcon').height();
+        if (tipph > tiph) {
+          $('.js-tipcon').addClass('tip-con voh');
+          $('.js-swicth').show();
+        } else {
+          $('.js-tipcon').removeClass('tip-con voh');
+          $('.js-swicth').hide();
+        }
+      };
+      $('.js-swicth').on('click', function() {
+        var intxt = $(this).text();
+        if (intxt.indexOf('展开') > -1) {
+          $('.js-tipcon').removeClass('tip-con voh');
+          $(this).html('收起');
+        } else {
+          $('.js-tipcon').addClass('tip-con voh');
+          $(this).html('展开');
+        }
+      });
+    });
+  </script>
+
+</html>

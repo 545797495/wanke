@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>列表</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="search-outdiv">
+      <div class="search-div">
+        <div class="area-swith" id="swith">
+          <div class="area-swithcon"><a class="jstag db">深圳<i class="icon icon-down"></i></a>
+            <div class="area-tip">其他城市正在陆续开通中，敬请期待...</div>
+          </div>
+        </div>
+        <div class="search-inner">
+          <i class="icon icon-search"></i>
+          <input class="search-input" type="text" placeholder="请输入楼盘名称" id="search" />
+        </div>
+      </div>
+    </div>
+
+    <ul class="tab-head tc clearfix" id="tabul">
+      <li data-type='area'>
+        <a class="jstag">区域<i class="icon icon-down"></i></a>
+        <div class="tab-item">
+          <a data-value='all'>全深圳</a>
+          <a data-value='lg'>龙岗</a>
+          <a data-value='ba'>宝安</a>
+          <a data-value='ns'>南山</a>
+        </div>
+      </li>
+      <li><a class="jstag">价格<i class="icon icon-down"></i></a>
+        <div class="tab-item">
+          <a data-value='0'>不限</a>
+          <a data-value='1'>1.5万以下</a>
+          <a data-value='2'>1.5-2万</a>
+        </div>
+      </li>
+      <li><a class="jstag">户型<i class="icon icon-down"></i></a>
+        <div class="tab-item">
+          <a data-value='0'>不限</a>
+          <a data-value='1'>1室</a>
+          <a data-value='2'>2室</a>
+        </div>
+      </li>
+      <li><a class="jstag">特色<i class="icon icon-down"></i></a>
+        <div class="tab-item">
+          <a>全部</a>
+          <a>即将开盘</a>
+        </div>
+      </li>
+
+    </ul>
+
+    <div class="sroller-div" id="srollerdiv">
+      <div class="scroller">
+        <!--内容-->
+        <ul class="houses-list" id="houses-list">
+          <!--  <li>
+            <a class="clearfix db" href="houseinfo.html?" 1=""><img class="list-img" src="img/test/list.jpg" alt="">
+              <div class="list-info">
+                <p class="p1">佳兆业城市广场三期</p>
+                <p class="p2"><span>38000</span>元/平</p>
+                <div class="house-tag clearfix"><span class="item1">99折优惠现在开抢</span>
+                  <span class="item2">小户型</span><span class="item3">精装修</span>
+                </div>
+                <p class="c-light">龙岗区吉祥路与龙平西路交汇处</p>
+              </div>
+              <div class="review-count tc">
+                <p class="p1">32</p>
+                <p class="p2">评论数</p>
+              </div>
+            </a>
+          </li>-->
+          <!--  <p class="tc list-tip">抱歉，没有找到符合项目</p>-->
+        </ul>
+
+        <!--内容-->
+        <div id="pullUp">
+          <span class="pullUpIcon"></span><span class="pullUpLabel">加载更多</span>
+        </div>
+      </div>
+    </div>
+    <div id="mask" class="mask"></div>
+  </body>
+  <script src="js/jquery-2.0.0.min.js"></script>
+  <script src="js/iscroll.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+     /*getdom*/
+     //当前方法中obj属性值按需更新
+    function getList(obj) {
+        var htmls = '<li><a class="clearfix db" href="houseinfo.html?"' + obj.hid + '><img class="list-img" src="' + obj.pic + '" alt="">';
+        htmls += '<div class="list-info"><p class="p1">' + obj.hhead + '</p><p class="p2"><span>' + obj.hpf + '</span>元/平</p><div class="house-tag clearfix">';
+        var taglen = obj.tag.length
+        for (var k = 0; k < taglen; k++) {
+          var tagc = k + 1;
+          htmls += '<span class="item' + tagc + '">' + obj.tag[k] + '</span>';
+        }
+        htmls += '</div><p class="c-light">' + obj.ad + '</p></div><div class="review-count tc"><p class="p1">' + obj.review + '</p><p class="p2">评论数</p></div></a></li>';
+        return htmls;
+      }
+      /*json数据*/
+    var datas = {
+      "status": "ok",
+      "list": [{
+        "hid": "1",
+        "pic": "img/test/list.jpg",
+        "hhead": "佳兆业城市广场三期",
+        "hpf": "38000",
+        "tag": ["99折优惠现在开抢", "小户型", "精装修"],
+        "ad": "龙岗区吉祥路与龙平西路交汇处",
+        "review": "32"
+      }, {
+        "hid": "2",
+        "pic": "img/test/list.jpg",
+        "hhead": "佳兆业城市广场三期",
+        "hpf": "38000",
+        "tag": ["99折优惠现在开抢", "小户型", "精装修"],
+        "ad": "龙岗区吉祥路与龙平西路交汇处",
+        "review": "33"
+      }, {
+        "hid": "3",
+        "pic": "img/test/list.jpg",
+        "hhead": "佳兆业城市广场三期",
+        "hpf": "38000",
+        "tag": ["99折优惠现在开抢", "小户型", "精装修"],
+        "ad": "龙岗区吉祥路与龙平西路交汇处",
+        "review": "34"
+      }, {
+        "hid": "4",
+        "pic": "img/test/list.jpg",
+        "hhead": "佳兆业城市广场三期",
+        "hpf": "38000",
+        "tag": ["99折优惠现在开抢", "小户型", "精装修"],
+        "ad": "龙岗区吉祥路与龙平西路交汇处",
+        "review": "35"
+      }, {
+        "hid": "5",
+        "pic": "img/test/list.jpg",
+        "hhead": "佳兆业城市广场三期",
+        "hpf": "38000",
+        "tag": ["99折优惠现在开抢", "小户型", "精装修"],
+        "ad": "龙岗区吉祥路与龙平西路交汇处",
+        "review": "36"
+      }, {
+        "hid": "6",
+        "pic": "img/test/list.jpg",
+        "hhead": "佳兆业城市广场三期",
+        "hpf": "38000",
+        "tag": ["99折优惠现在开抢", "小户型", "精装修"],
+        "ad": "龙岗区吉祥路与龙平西路交汇处6",
+        "review": "37"
+      }]
+    };
+    var datas1 = {
+      "status": "ok",
+      "list": [{
+        "hid": "11",
+        "pic": "img/test/list.jpg",
+        "hhead": "佳兆业城市广场三期",
+        "hpf": "3800011",
+        "tag": ["99折优惠现在开抢", "小户型", "精装修"],
+        "ad": "龙岗区吉祥路与龙平西路交汇处",
+        "review": "32"
+      }, {
+        "hid": "2",
+        "pic": "img/test/list.jpg",
+        "hhead": "佳兆业城市广场三期",
+        "hpf": "38000",
+        "tag": ["99折优惠现在开抢", "小户型", "精装修"],
+        "ad": "龙岗区吉祥路与龙平西路交汇处",
+        "review": "33"
+      }, {
+        "hid": "3",
+        "pic": "img/test/list.jpg",
+        "hhead": "佳兆业城市广场三期",
+        "hpf": "38000",
+        "tag": ["99折优惠现在开抢", "小户型", "精装修"],
+        "ad": "龙岗区吉祥路与龙平西路交汇处",
+        "review": "34"
+      }, {
+        "hid": "4",
+        "pic": "img/test/list.jpg",
+        "hhead": "佳兆业城市广场三期",
+        "hpf": "38000",
+        "tag": ["99折优惠现在开抢", "小户型", "精装修"],
+        "ad": "龙岗区吉祥路与龙平西路交汇处",
+        "review": "35"
+      }, {
+        "hid": "5",
+        "pic": "img/test/list.jpg",
+        "hhead": "佳兆业城市广场三期",
+        "hpf": "38000",
+        "tag": ["99折优惠现在开抢", "小户型", "精装修"],
+        "ad": "龙岗区吉祥路与龙平西路交汇处",
+        "review": "36"
+      }, {
+        "hid": "6",
+        "pic": "img/test/list.jpg",
+        "hhead": "佳兆业城市广场三期",
+        "hpf": "38000",
+        "tag": ["99折优惠现在开抢", "小户型", "精装修"],
+        "ad": "龙岗区吉祥路与龙平西路交汇处6",
+        "review": "37"
+      }]
+    };
+     // 初始化页面参数
+    var pageParam = {
+      pageNum: 1,
+      type: '',
+      info: ''
+    };
+    $(function() {      
+      setTimeout(loaded({
+        el: $('#houses-list'),
+        done: pageRender
+      }, 0), 200);
+
+      function pageRender() {
+        loadData({
+          container: '#houses-list',
+          url: 'getHouseList',
+          params: pageParam
+        });
+      }
+      pageRender();
+      /*选择下拉*/
+      dropMenu('#tabul', '.jstag', '.tab-item');
+      $('#tabul .tab-item').on('click', 'a', function(e) {
+          e.stopPropagation();
+          if ($(this).hasClass('cur')) {
+            $(this).removeClass('cur');
+          } else {
+            $(this).addClass('cur').siblings().removeClass();
+            $('#mask').hide();
+            $('#tabul').removeClass('re');
+            $(this).parent().parent().removeClass('cur');
+            $('#tabul').siblings('.search-outdiv').removeClass('re');
+          }
+          /*选择类型和区域的填充数据等操作*/
+          pageParam = {
+            pageNum: 1,
+            type: $(this).closest('li').data('type'),
+            info: $(this).data('value')
+          };
+          datas = datas1;
+          $('#houses-list').empty();
+          myScroll.refresh();
+          pageRender();
+        })
+        /*地区的提示*/
+     $('#swith').on('click', '.jstag', function() {
+        var tag = $('#swith');
+        $('.area-tip').animate({
+          opacity: 1,
+        }, 300, function() {
+          $('.area-tip').show();
+        }).animate({
+          opacity: 1
+        }, 1000, function() {
+          $('.area-tip').show();
+        }).animate({
+          opacity: 0
+        }, 30, function() {
+          $('.area-tip').hide();
+        });
+      });
+      
+      /*搜索 如果此处不是跳转页面 请模仿点击区域那些的操作方法*/
+      $('#search').keyup(function() {
+        if (event.keyCode == 13) {
+          var stext = $('#search').val();
+          console.log(stext);
+          /*ajax*/
+          $.ajax({
+            type: "get",
+            url: "",
+            cache: false,
+            data: {
+              search: stext
+            },
+            dataType: "json",
+            success: function(data) {
+              //操作
+            }
+          });
+          /*ajax*/
+        }
+      });
+   
+    });
+  </script>
+
+</html>
